@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>magnifier.transformer package &mdash; magnifier 0.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> magnifier
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">magnifier.transformer package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-magnifier.transformer.compressing">magnifier.transformer.compressing module</a></li>
+<li><a class="reference internal" href="#module-magnifier.transformer.time_series">magnifier.transformer.time_series module</a></li>
+<li><a class="reference internal" href="#module-magnifier.transformer">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">magnifier</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>magnifier.transformer package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/magnifier.transformer.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="magnifier-transformer-package">
+<h1>magnifier.transformer package<a class="headerlink" href="#magnifier-transformer-package" title="Permalink to this headline"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-magnifier.transformer.compressing">
+<span id="magnifier-transformer-compressing-module"></span><h2>magnifier.transformer.compressing module<a class="headerlink" href="#module-magnifier.transformer.compressing" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="magnifier.transformer.compressing.MeanCompressor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">magnifier.transformer.compressing.</span></span><span class="sig-name descname"><span class="pre">MeanCompressor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#magnifier.transformer.compressing.MeanCompressor" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="magnifier.html#magnifier.base.BaseTransformer" title="magnifier.base.BaseTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">magnifier.base.BaseTransformer</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="magnifier.transformer.compressing.MeanCompressor.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#magnifier.transformer.compressing.MeanCompressor.transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="magnifier.transformer.compressing.MeanCompressor.width">
+<span class="sig-name descname"><span class="pre">width</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#magnifier.transformer.compressing.MeanCompressor.width" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-magnifier.transformer.time_series">
+<span id="magnifier-transformer-time-series-module"></span><h2>magnifier.transformer.time_series module<a class="headerlink" href="#module-magnifier.transformer.time_series" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="magnifier.transformer.time_series.MFCC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">magnifier.transformer.time_series.</span></span><span class="sig-name descname"><span class="pre">MFCC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">frame_rate:</span> <span class="pre">int,</span> <span class="pre">winlen:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.025,</span> <span class="pre">winstep:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.01,</span> <span class="pre">numcep:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">13,</span> <span class="pre">nfft:</span> <span class="pre">Optional[int]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">winfunc:</span> <span class="pre">Callable[[int],</span> <span class="pre">numpy.ndarray]</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">hamming&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#magnifier.transformer.time_series.MFCC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="magnifier.html#magnifier.base.BaseTransformer" title="magnifier.base.BaseTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">magnifier.base.BaseTransformer</span></code></a></p>
+<p>MFCCを適用する</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="magnifier.transformer.time_series.MFCC.frame_rate">
+<span class="sig-name descname"><span class="pre">frame_rate</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#magnifier.transformer.time_series.MFCC.frame_rate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="magnifier.transformer.time_series.MFCC.nfft">
+<span class="sig-name descname"><span class="pre">nfft</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#magnifier.transformer.time_series.MFCC.nfft" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="magnifier.transformer.time_series.MFCC.numcep">
+<span class="sig-name descname"><span class="pre">numcep</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">13</span></em><a class="headerlink" href="#magnifier.transformer.time_series.MFCC.numcep" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="magnifier.transformer.time_series.MFCC.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#magnifier.transformer.time_series.MFCC.transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="magnifier.transformer.time_series.MFCC.winfunc">
+<span class="sig-name descname"><span class="pre">winfunc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#magnifier.transformer.time_series.MFCC.winfunc" title="Permalink to this definition"></a></dt>
+<dd><p>Return the Hamming window.</p>
+<p>The Hamming window is a taper formed by using a weighted cosine.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>M</strong> (<em>int</em>) – Number of points in the output window. If zero or less, an
+empty array is returned.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>out</strong> – The window, with the maximum value normalized to one (the value
+one appears only if the number of samples is odd).</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">bartlett</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">blackman</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">hanning</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">kaiser</span></code></p>
+</div>
+<p class="rubric">Notes</p>
+<p>The Hamming window is defined as</p>
+<div class="math notranslate nohighlight">
+\[w(n) = 0.54 - 0.46cos\left(\frac{2\pi{n}}{M-1}\right)
+\qquad 0 \leq n \leq M-1\]</div>
+<p>The Hamming was named for R. W. Hamming, an associate of J. W. Tukey
+and is described in Blackman and Tukey. It was recommended for
+smoothing the truncated autocovariance function in the time domain.
+Most references to the Hamming window come from the signal processing
+literature, where it is used as one of many windowing functions for
+smoothing values.  It is also known as an apodization (which means
+“removing the foot”, i.e. smoothing discontinuities at the beginning
+and end of the sampled signal) or tapering function.</p>
+<p class="rubric">References</p>
+<dl class="footnote brackets">
+<dt class="label" id="id1"><span class="brackets">1</span></dt>
+<dd><p>Blackman, R.B. and Tukey, J.W., (1958) The measurement of power
+spectra, Dover Publications, New York.</p>
+</dd>
+<dt class="label" id="id2"><span class="brackets">2</span></dt>
+<dd><p>E.R. Kanasewich, “Time Sequence Analysis in Geophysics”, The
+University of Alberta Press, 1975, pp. 109-110.</p>
+</dd>
+<dt class="label" id="id3"><span class="brackets">3</span></dt>
+<dd><p>Wikipedia, “Window function”,
+<a class="reference external" href="https://en.wikipedia.org/wiki/Window_function">https://en.wikipedia.org/wiki/Window_function</a></p>
+</dd>
+<dt class="label" id="id4"><span class="brackets">4</span></dt>
+<dd><p>W.H. Press,  B.P. Flannery, S.A. Teukolsky, and W.T. Vetterling,
+“Numerical Recipes”, Cambridge University Press, 1986, page 425.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">hamming</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="go">array([ 0.08      ,  0.15302337,  0.34890909,  0.60546483,  0.84123594, # may vary</span>
+<span class="go">        0.98136677,  0.98136677,  0.84123594,  0.60546483,  0.34890909,</span>
+<span class="go">        0.15302337,  0.08      ])</span>
+</pre></div>
+</div>
+<p>Plot the window and the frequency response:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">numpy.fft</span> <span class="kn">import</span> <span class="n">fft</span><span class="p">,</span> <span class="n">fftshift</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">window</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hamming</span><span class="p">(</span><span class="mi">51</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+<span class="go">[&lt;matplotlib.lines.Line2D object at 0x...&gt;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Hamming window&quot;</span><span class="p">)</span>
+<span class="go">Text(0.5, 1.0, &#39;Hamming window&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Amplitude&quot;</span><span class="p">)</span>
+<span class="go">Text(0, 0.5, &#39;Amplitude&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Sample&quot;</span><span class="p">)</span>
+<span class="go">Text(0.5, 0, &#39;Sample&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="go">&lt;Figure size 640x480 with 0 Axes&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">fft</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="mi">2048</span><span class="p">)</span> <span class="o">/</span> <span class="mf">25.5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fftshift</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">freq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">mag</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+<span class="go">[&lt;matplotlib.lines.Line2D object at 0x...&gt;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Frequency response of Hamming window&quot;</span><span class="p">)</span>
+<span class="go">Text(0.5, 1.0, &#39;Frequency response of Hamming window&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Magnitude [dB]&quot;</span><span class="p">)</span>
+<span class="go">Text(0, 0.5, &#39;Magnitude [dB]&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Normalized frequency [cycles per sample]&quot;</span><span class="p">)</span>
+<span class="go">Text(0.5, 0, &#39;Normalized frequency [cycles per sample]&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="magnifier.transformer.time_series.MFCC.winlen">
+<span class="sig-name descname"><span class="pre">winlen</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.025</span></em><a class="headerlink" href="#magnifier.transformer.time_series.MFCC.winlen" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="magnifier.transformer.time_series.MFCC.winstep">
+<span class="sig-name descname"><span class="pre">winstep</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.01</span></em><a class="headerlink" href="#magnifier.transformer.time_series.MFCC.winstep" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="magnifier.transformer.time_series.StandardScaler3d">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">magnifier.transformer.time_series.</span></span><span class="sig-name descname"><span class="pre">StandardScaler3d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scalers:</span> <span class="pre">List[sklearn.preprocessing._data.StandardScaler]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#magnifier.transformer.time_series.StandardScaler3d" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="magnifier.html#magnifier.base.BaseTransformer" title="magnifier.base.BaseTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">magnifier.base.BaseTransformer</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="magnifier.transformer.time_series.StandardScaler3d.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#magnifier.transformer.time_series.StandardScaler3d" title="magnifier.transformer.time_series.StandardScaler3d"><span class="pre">magnifier.transformer.time_series.StandardScaler3d</span></a></span></span><a class="headerlink" href="#magnifier.transformer.time_series.StandardScaler3d.fit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="magnifier.transformer.time_series.StandardScaler3d.scalers">
+<span class="sig-name descname"><span class="pre">scalers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">sklearn.preprocessing._data.StandardScaler</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#magnifier.transformer.time_series.StandardScaler3d.scalers" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="magnifier.transformer.time_series.StandardScaler3d.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#magnifier.transformer.time_series.StandardScaler3d.transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-magnifier.transformer">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-magnifier.transformer" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, koreander2001.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
