@@ -8,7 +8,7 @@ def flatten_dict(
     pre_list: List[str] = [],
     result_dict: Dict[str, Any] = {},
 ) -> Dict[str, Any]:
-    """ネストされた辞書系の変数を、平坦な辞書に変換する
+    """ネストされた辞書系の変数を、平坦な辞書に変換する。
 
     Parameters
     ----------
@@ -36,7 +36,7 @@ def flatten_dict(
 
 
 def generate_mlflow_active_run(url: str, experiment_name: str) -> mlflow.ActiveRun:
-    """指定されたURLと実験名でMLflowの実験管理オブジェクトを生成する
+    """指定されたURLと実験名でMLflowの実験管理オブジェクトを生成する。
 
     Parameters
     ----------
