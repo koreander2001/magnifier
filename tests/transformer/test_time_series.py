@@ -7,7 +7,7 @@ class TestSlidingWindow:
     def test_init_exception(self):
         width = 3.14
         stepsize = 1
-        error_message = f"`width` is not `int, width: {width}."
+        error_message = f"`width` is not `int`, width: {width}."
         with pytest.raises(TypeError, match=error_message):
             _ = SlidingWindow(width=width, stepsize=stepsize)
 
@@ -40,12 +40,18 @@ class TestSlidingWindow:
     def test_transform_exception(self):
         width = 9
         stepsize = 1
-        X = np.arange(8)
+        sliding_window = SlidingWindow(width=width, stepsize=stepsize)
+
+        X = [0, 1, 2, 3, 4, 5, 6, 7]
+        error_message = f"Type of X must be np.ndarray, but given: {type(X)}."
+        with pytest.raises(TypeError, match=error_message):
+            _ = sliding_window.transform(X)
+
+        X = np.arange([0, 1, 2, 3, 4, 5, 6, 7])
         error_message = (
             f"`X.shape[-1]` less than `width`, width: {width}, shape of X: {X.shape}."
         )
         with pytest.raises(ValueError, match=error_message):
-            sliding_window = SlidingWindow(width=width, stepsize=stepsize)
             _ = sliding_window.transform(X)
 
     def test_transform_1_dim(self):
