@@ -39,6 +39,15 @@ class MFCC(BaseTransformer):
 
 
 @dataclass
+class SlidingWindow(BaseTransformer):
+    width: int
+    stepsize: int
+
+    def transform(self, X):
+        return X
+
+
+@dataclass
 class StandardScaler3d(BaseTransformer):
     _scalers: List[StandardScaler] = field(default_factory=list)
 
