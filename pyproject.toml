@@ -14,7 +14,7 @@ vcs = "git"
 style = "semver"
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.7,<3.10"
 matplotlib = "^3.5.1"
 mlflow = "^1.22.0"
 numpy = "^1.20.0"
@@ -24,6 +24,7 @@ scikit-learn = "^1.0.2"
 seaborn = "^0.11.2"
 typing-extensions = "^4.0.1"
 python_speech_features = "^0.6"
+scipy = "~=1.7.0"
 
 [tool.poetry.dev-dependencies]
 black = "^21.12b0"
@@ -32,6 +33,7 @@ flake8 = "^4.0.1"
 mypy = "^0.931"
 Sphinx = "^4.3.2"
 sphinx-rtd-theme = "^1.0.0"
+pytest = "^7.1.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]

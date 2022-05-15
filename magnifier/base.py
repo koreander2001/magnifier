@@ -10,7 +10,7 @@ from sklearn.base import (
 
 class BaseClassifier(BaseEstimator, ClassifierMixin, metaclass=ABCMeta):
     @abstractmethod
-    def fit(self, X, y) -> "BaseClassifier":
+    def fit(self, X, y, **fit_params) -> "BaseClassifier":
         raise NotImplementedError
 
     @abstractmethod
@@ -20,7 +20,7 @@ class BaseClassifier(BaseEstimator, ClassifierMixin, metaclass=ABCMeta):
 
 class BaseRegressor(BaseEstimator, RegressorMixin, metaclass=ABCMeta):
     @abstractmethod
-    def fit(self, X, y) -> "BaseRegressor":
+    def fit(self, X, y, **fit_params) -> "BaseRegressor":
         raise NotImplementedError
 
     @abstractmethod
@@ -29,7 +29,7 @@ class BaseRegressor(BaseEstimator, RegressorMixin, metaclass=ABCMeta):
 
 
 class BaseTransformer(BaseEstimator, TransformerMixin, metaclass=ABCMeta):
-    def fit(self, X, y=None) -> "BaseTransformer":
+    def fit(self, X, y=None, **fit_params) -> "BaseTransformer":
         return self
 
     @abstractmethod

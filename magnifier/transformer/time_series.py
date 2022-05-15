@@ -1,8 +1,9 @@
 from dataclasses import dataclass, field
-from typing import Callable, List, Optional
+from typing import Callable, ClassVar, List, Optional
 
 import numpy as np
 from python_speech_features import mfcc
+from scipy.stats import kurtosis, skew
 from sklearn.exceptions import NotFittedError
 from sklearn.preprocessing import StandardScaler
 
@@ -42,7 +43,7 @@ class MFCC(BaseTransformer):
 class StandardScaler3d(BaseTransformer):
     _scalers: List[StandardScaler] = field(default_factory=list)
 
-    def fit(self, X: np.ndarray, y: None = None) -> "StandardScaler3d":
+    def fit(self, X: np.ndarray, y: None = None, **fit_params) -> "StandardScaler3d":
         self._check_X(X)
 
         self._scalers = list(
@@ -84,3 +85,48 @@ class StandardScaler3d(BaseTransformer):
             raise ValueError(
                 f"X.shape[1] must be equal to {len(self._scalers)}, but given: {X.shape}."
             )
+
+
+@dataclass
+class Summarizer(BaseTransformer):
+    """TODO: Add description"""
+
+    ALL_STATS: ClassVar[List[str]] = (
+        "min",
+        "max",
+        "mean",
+        "std",
+        "var",
+        "skew",
+        "kurt",
+    )
+
+    include: List[str] = field(default_factory=list)
+    exclude: List[str] = field(default_factory=list)
+    _target_stats: List[str] = field(init=False)
+
+    def __post_init__(self) -> None:
+        _target_stats = set(self.include or self.ALL_STATS) - set(self.exclude)
+        self._target_stats = list(filter(_target_stats.__contains__, self.ALL_STATS))
+
+    def fit(self, X, y, **fit_params):
+        return self
+
+    def transform(self, X: np.ndarray) -> np.ndarray:
+        stats_list = []
+        if "min" in self._target_stats:
+            stats_list.append(X.min(axis=2).reshape(X.shape[0], X.shape[1], 1))
+        if "max" in self._target_stats:
+            stats_list.append(X.max(axis=2).reshape(X.shape[0], X.shape[1], 1))
+        if "mean" in self._target_stats:
+            stats_list.append(X.mean(axis=2).reshape(X.shape[0], X.shape[1], 1))
+        if "std" in self._target_stats:
+            stats_list.append(X.std(axis=2).reshape(X.shape[0], X.shape[1], 1))
+        if "var" in self._target_stats:
+            stats_list.append(X.var(axis=2).reshape(X.shape[0], X.shape[1], 1))
+        if "skew" in self._target_stats:
+            stats_list.append(skew(X, axis=2).reshape(X.shape[0], X.shape[1], 1))
+        if "kurt" in self._target_stats:
+            stats_list.append(kurtosis(X, axis=2).reshape(X.shape[0], X.shape[1], 1))
+
+        return np.concatenate(stats_list, axis=2)
