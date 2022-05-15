@@ -1,3 +1,5 @@
+import re
+
 import numpy as np
 import pytest
 from magnifier.transformer.time_series import SlidingWindow
@@ -47,11 +49,11 @@ class TestSlidingWindow:
         with pytest.raises(TypeError, match=error_message):
             _ = sliding_window.transform(X)
 
-        X = np.arange([0, 1, 2, 3, 4, 5, 6, 7])
+        X = np.array([0, 1, 2, 3, 4, 5, 6, 7])
         error_message = (
             f"`X.shape[-1]` less than `width`, width: {width}, shape of X: {X.shape}."
         )
-        with pytest.raises(ValueError, match=error_message):
+        with pytest.raises(ValueError, match=re.escape(error_message)):
             _ = sliding_window.transform(X)
 
     def test_transform_1_dim(self):
@@ -66,7 +68,7 @@ class TestSlidingWindow:
                 [2, 3, 4, 5],
             ]
         )
-        assert output_arr == expected_arr
+        assert np.all(output_arr == expected_arr)
 
     def test_transform_1_dim_with_truncated_data(self):
         X = np.arange(7)
@@ -75,7 +77,7 @@ class TestSlidingWindow:
         output_arr = sliding_window.transform(X)
 
         expected_arr = np.array([[0, 1, 2, 3], [2, 3, 4, 5]])
-        assert output_arr == expected_arr
+        assert np.all(output_arr == expected_arr)
 
     def test_transform_not_1_dim(self):
         X = np.array(
@@ -106,4 +108,4 @@ class TestSlidingWindow:
                 ],
             ]
         )
-        assert output_arr == expected_arr
+        assert np.all(output_arr == expected_arr)
