@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Callable, ClassVar, List, Optional
+from typing import Callable, ClassVar, List, Optional, Tuple
 
 import numpy as np
 from python_speech_features import mfcc
@@ -37,6 +37,61 @@ class MFCC(BaseTransformer):
             nfft=nfft,
             winfunc=self.winfunc,
         )
+
+
+@dataclass
+class SlidingWindow(BaseTransformer):
+    width: int
+    stepsize: int
+
+    def __post_init__(self):
+        self._check_parameter()
+
+    def transform(self, X):
+        self._check_X(X)
+
+        data_size = X.shape[-1]
+
+        index_ranges = []
+        for start in range(0, data_size, self.stepsize):
+            end = start + self.width
+            if end > data_size:
+                break
+            index_ranges.append((start, end))
+
+        return np.apply_along_axis(self._extract_by_index_ranges, -1, X, index_ranges)
+
+    def _check_parameter(self):
+        if not isinstance(self.width, int):
+            raise TypeError(f"`width` is not `int`, width: {self.width}.")
+        if not isinstance(self.stepsize, int):
+            raise TypeError(f"`stepsize` is not `int`, stepsize: {self.stepsize}.")
+
+        if self.width < 1:
+            raise ValueError(f"`width` is not positive number, width: {self.width}.")
+        if self.stepsize < 1:
+            raise ValueError(
+                f"`stepsize` is not positive number, stepsize: {self.stepsize}."
+            )
+
+        if self.width < self.stepsize:
+            raise ValueError(
+                f"`width` less than `stepsize`, width: {self.width}, stepsize: {self.stepsize}."
+            )
+
+    def _check_X(self, X: np.ndarray) -> None:
+        if not isinstance(X, np.ndarray):
+            raise TypeError(f"Type of X must be np.ndarray, but given: {type(X)}.")
+
+        if X.shape[-1] < self.width:
+            raise ValueError(
+                f"`X.shape[-1]` less than `width`, width: {self.width}, shape of X: {X.shape}."
+            )
+
+    def _extract_by_index_ranges(
+        self, X: np.ndarray, index_ranges: List[Tuple[int, int]]
+    ) -> np.ndarray:
+        return np.array([X[start:end] for start, end in index_ranges])
 
 
 @dataclass
@@ -91,7 +146,7 @@ class StandardScaler3d(BaseTransformer):
 class Summarizer(BaseTransformer):
     """TODO: Add description"""
 
-    ALL_STATS: ClassVar[List[str]] = (
+    ALL_STATS: ClassVar[List[str]] = [
         "min",
         "max",
         "mean",
@@ -99,7 +154,7 @@ class Summarizer(BaseTransformer):
         "var",
         "skew",
         "kurt",
-    )
+    ]
 
     include: List[str] = field(default_factory=list)
     exclude: List[str] = field(default_factory=list)
