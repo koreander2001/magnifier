@@ -2,7 +2,7 @@ import re
 
 import numpy as np
 import pytest
-from magnifier.transformer.time_series import SlidingWindow
+from magnifier.transformer.time_series import SlidingWindow, Summarizer
 
 
 class TestSlidingWindow:
@@ -109,3 +109,21 @@ class TestSlidingWindow:
             ]
         )
         assert np.all(output_arr == expected_arr)
+
+
+class TestSummarizer:
+    def test_init_exception(self):
+        include = 3.14
+        error_message = f"`include` is not `Iterable`, include: {include}."
+        with pytest.raises(TypeError, match=error_message):
+            _ = Summarizer(include=include)
+
+        exclude = 3.14
+        error_message = f"`exclude` is not `Iterable`, exclude: {exclude}."
+        with pytest.raises(TypeError, match=error_message):
+            _ = Summarizer(exclude=exclude)
+
+        include = ["mean", "std", "abc"]
+        error_message = f"`include` has not supported statistics, include: {('abc',)}."
+        with pytest.raises(ValueError, match=re.escape(error_message)):
+            _ = Summarizer(include=include)

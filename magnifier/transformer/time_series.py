@@ -1,8 +1,9 @@
 from dataclasses import dataclass, field
-from typing import Callable, List, Optional, Tuple
+from typing import Callable, ClassVar, Iterable, List, Optional, Tuple
 
 import numpy as np
 from python_speech_features import mfcc
+from scipy.stats import kurtosis, skew
 from sklearn.exceptions import NotFittedError
 from sklearn.preprocessing import StandardScaler
 
@@ -97,7 +98,7 @@ class SlidingWindow(BaseTransformer):
 class StandardScaler3d(BaseTransformer):
     _scalers: List[StandardScaler] = field(default_factory=list)
 
-    def fit(self, X: np.ndarray, y: None = None) -> "StandardScaler3d":
+    def fit(self, X: np.ndarray, y: None = None, **fit_params) -> "StandardScaler3d":
         self._check_X(X)
 
         self._scalers = list(
@@ -138,4 +139,63 @@ class StandardScaler3d(BaseTransformer):
         if X.shape[2] != len(self._scalers):
             raise ValueError(
                 f"X.shape[1] must be equal to {len(self._scalers)}, but given: {X.shape}."
+            )
+
+
+@dataclass
+class Summarizer(BaseTransformer):
+    """TODO: Add description"""
+
+    ALL_STATS: ClassVar[Tuple[str, ...]] = (
+        "min",
+        "max",
+        "mean",
+        "std",
+        "var",
+        "skew",
+        "kurt",
+    )
+
+    include: Iterable[str] = field(default_factory=list)
+    exclude: Iterable[str] = field(default_factory=list)
+    _target_stats: Tuple[str, ...] = field(init=False)
+
+    def __post_init__(self) -> None:
+        self._check_parameter()
+
+        _target_stats = set(self.include or self.ALL_STATS) - set(self.exclude)
+        self._target_stats = tuple(filter(_target_stats.__contains__, self.ALL_STATS))
+
+    def fit(self, X, y, **fit_params):
+        return self
+
+    def transform(self, X: np.ndarray) -> np.ndarray:
+        stats_list = []
+        if "min" in self._target_stats:
+            stats_list.append(X.min(axis=2).reshape(X.shape[0], X.shape[1], 1))
+        if "max" in self._target_stats:
+            stats_list.append(X.max(axis=2).reshape(X.shape[0], X.shape[1], 1))
+        if "mean" in self._target_stats:
+            stats_list.append(X.mean(axis=2).reshape(X.shape[0], X.shape[1], 1))
+        if "std" in self._target_stats:
+            stats_list.append(X.std(axis=2).reshape(X.shape[0], X.shape[1], 1))
+        if "var" in self._target_stats:
+            stats_list.append(X.var(axis=2).reshape(X.shape[0], X.shape[1], 1))
+        if "skew" in self._target_stats:
+            stats_list.append(skew(X, axis=2).reshape(X.shape[0], X.shape[1], 1))
+        if "kurt" in self._target_stats:
+            stats_list.append(kurtosis(X, axis=2).reshape(X.shape[0], X.shape[1], 1))
+
+        return np.concatenate(stats_list, axis=2)
+
+    def _check_parameter(self):
+        if not isinstance(self.include, Iterable):
+            raise TypeError(f"`include` is not `Iterable`, include: {self.include}.")
+        if not isinstance(self.exclude, Iterable):
+            raise TypeError(f"`exclude` is not `Iterable`, exclude: {self.exclude}.")
+
+        not_supported_stats = tuple(set(self.include) - set(self.ALL_STATS))
+        if not_supported_stats:
+            raise ValueError(
+                f"`include` has not supported statistics, include: {not_supported_stats}."
             )
