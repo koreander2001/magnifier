@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Callable, ClassVar, List, Optional, Tuple
+from typing import Callable, ClassVar, Iterable, List, Optional, Tuple
 
 import numpy as np
 from python_speech_features import mfcc
@@ -146,7 +146,7 @@ class StandardScaler3d(BaseTransformer):
 class Summarizer(BaseTransformer):
     """TODO: Add description"""
 
-    ALL_STATS: ClassVar[List[str]] = [
+    ALL_STATS: ClassVar[Tuple[str, ...]] = (
         "min",
         "max",
         "mean",
@@ -154,15 +154,17 @@ class Summarizer(BaseTransformer):
         "var",
         "skew",
         "kurt",
-    ]
+    )
 
-    include: List[str] = field(default_factory=list)
-    exclude: List[str] = field(default_factory=list)
-    _target_stats: List[str] = field(init=False)
+    include: Iterable[str] = field(default_factory=list)
+    exclude: Iterable[str] = field(default_factory=list)
+    _target_stats: Tuple[str, ...] = field(init=False)
 
     def __post_init__(self) -> None:
+        self._check_parameter()
+
         _target_stats = set(self.include or self.ALL_STATS) - set(self.exclude)
-        self._target_stats = list(filter(_target_stats.__contains__, self.ALL_STATS))
+        self._target_stats = tuple(filter(_target_stats.__contains__, self.ALL_STATS))
 
     def fit(self, X, y, **fit_params):
         return self
@@ -185,3 +187,15 @@ class Summarizer(BaseTransformer):
             stats_list.append(kurtosis(X, axis=2).reshape(X.shape[0], X.shape[1], 1))
 
         return np.concatenate(stats_list, axis=2)
+
+    def _check_parameter(self):
+        if not isinstance(self.include, Iterable):
+            raise TypeError(f"`include` is not `Iterable`, include: {self.include}.")
+        if not isinstance(self.exclude, Iterable):
+            raise TypeError(f"`exclude` is not `Iterable`, exclude: {self.exclude}.")
+
+        not_supported_stats = tuple(set(self.include) - set(self.ALL_STATS))
+        if not_supported_stats:
+            raise ValueError(
+                f"`include` has not supported statistics, include: {not_supported_stats}."
+            )
