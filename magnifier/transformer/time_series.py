@@ -95,16 +95,16 @@ class SlidingWindow(BaseTransformer):
 
 
 @dataclass
-class StandardScaler3d(BaseTransformer):
+class StandardScalerXdim(BaseTransformer):
     _scalers: List[StandardScaler] = field(default_factory=list)
 
-    def fit(self, X: np.ndarray, y: None = None, **fit_params) -> "StandardScaler3d":
+    def fit(self, X: np.ndarray, y: None = None, **fit_params) -> "StandardScalerXdim":
         self._check_X(X)
 
         self._scalers = list(
             map(
-                lambda i: StandardScaler().fit(X[:, :, i].reshape(-1, 1)),
-                range(X.shape[2]),
+                lambda i: StandardScaler().fit(X[..., i].reshape(-1, 1)),
+                range(X.shape[-1]),
             )
         )
 
@@ -116,7 +116,7 @@ class StandardScaler3d(BaseTransformer):
         X_result = np.copy(X)
 
         for i, scaler in enumerate(self._scalers):
-            X_result[:, :, i] = scaler.transform(X[:, :, i].reshape(-1, 1)).reshape(
+            X_result[..., i] = scaler.transform(X[..., i].reshape(-1, 1)).reshape(
                 X.shape[:-1]
             )
 
@@ -125,10 +125,6 @@ class StandardScaler3d(BaseTransformer):
     def _check_X(self, X: np.ndarray) -> None:
         if not isinstance(X, np.ndarray):
             raise TypeError(f"Type of X must be np.ndarray, but given: {type(X)}")
-        if X.ndim != 3:
-            raise ValueError(
-                f"Number of dimensions of X must be 3, but given: {X.shape}."
-            )
 
     def _check_X_on_transform(self, X: np.ndarray) -> None:
         if not self._scalers:
@@ -136,9 +132,9 @@ class StandardScaler3d(BaseTransformer):
 
         self._check_X(X)
 
-        if X.shape[2] != len(self._scalers):
+        if X.shape[-1] != len(self._scalers):
             raise ValueError(
-                f"X.shape[1] must be equal to {len(self._scalers)}, but given: {X.shape}."
+                f"X.shape[-1] must be equal to {len(self._scalers)}, but given: {X.shape}."
             )
 
 
